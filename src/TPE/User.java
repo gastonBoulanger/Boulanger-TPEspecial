@@ -6,7 +6,17 @@ public class User {
 	private User next;
 	private Integer userId;
 	private ArrayList<String> userInterest = new ArrayList<String>();
+	private boolean exists;
 	private long timeArray;
+	
+	public boolean exists() {
+		return exists;
+	}
+
+	public void setExists(boolean exists) {
+		this.exists = exists;
+	}
+
 	private long timeFirst;
 	private long timeLast;
 	
@@ -38,8 +48,16 @@ public class User {
 	}
 
 	public User getNext() {
-		
 		return this.next;
+	}
+	
+	public boolean hasNext() {
+		if(next != null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public long getTimeArray() {
