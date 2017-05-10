@@ -16,4 +16,18 @@ public class UserLinkedListLast extends UserLinkedList {
 		}
 		super.size++;
 	}
+	
+	@Override
+	public void saveResult(User user, int size, long result) {
+		// TODO Auto-generated method stub
+		if(size <= 500000){
+			user.setTimeLast("500k", result);
+		}
+		else if( size <= 1000000){
+			user.setTimeLast("1m",result);
+		}
+		else if( size > 3000000){
+			user.setTimeLast("3m",result);
+		}
+	}
 }

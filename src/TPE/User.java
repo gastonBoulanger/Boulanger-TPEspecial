@@ -6,8 +6,16 @@ public class User {
 	private User next;
 	private Integer userId;
 	private ArrayList<String> userInterest = new ArrayList<String>();
-	private boolean exists;
-	private long timeArray;
+	private boolean exists = false;
+	private long timeLast500k;
+	private long timeLast1m;
+	private long timeLast3m;
+	private long timeFirst500k;
+	private long timeFirst1m;
+	private long timeFirst3m;
+	private long timeArray500k;
+	private long timeArray1m;
+	private long timeArray3m;
 	
 	public boolean exists() {
 		return exists;
@@ -16,9 +24,6 @@ public class User {
 	public void setExists(boolean exists) {
 		this.exists = exists;
 	}
-
-	private long timeFirst;
-	private long timeLast;
 	
 	public Integer getUserId(){
 		return userId;
@@ -60,27 +65,64 @@ public class User {
 		}
 	}
 
-	public long getTimeArray() {
-		return timeArray;
+	public long getTimeArray(String value) {
+		if(value.equals("500k")){
+			return timeArray500k;
+		} else if(value.equals("1m")){
+			return timeArray1m;
+		} else{
+			return timeArray3m;
+		}
 	}
 
-	public void setTimeArray(long timeArray) {
-		this.timeArray = timeArray;
+
+	public void setTimeArray(String value, long timeArray) {
+		if(value.equals("500k")){
+			this.timeArray500k = timeArray;
+		} else if(value.equals("1m")){
+			this.timeArray1m = timeArray;
+		} else if(value.equals("3m")){
+			this.timeArray3m = timeArray;
+		}
 	}
 
-	public long getTimeFirst() {
-		return timeFirst;
+	public long getTimeFirst(String value) {
+		if(value.equals("500k")){
+			return timeFirst500k;
+		} else if(value.equals("1m")){
+			return timeFirst1m;
+		} else{
+			return timeFirst3m;
+		}
 	}
 
-	public void setTimeFirst(long timeFirst) {
-		this.timeFirst = timeFirst;
+	public void setTimeFirst(String value, long timeFirst) {
+		if(value.equals("500k")){
+			this.timeFirst500k = timeFirst;
+		} else if(value.equals("1m")){
+			this.timeFirst1m = timeFirst;
+		} else if(value.equals("3m")){
+			this.timeFirst3m = timeFirst;
+		}
 	}
 
-	public long getTimeLast() {
-		return timeLast;
+	public long getTimeLast(String value) {
+		if(value.equals("500k")){
+			return timeLast500k;
+		} else if(value.equals("1m")){
+			return timeLast1m;
+		} else{
+			return timeLast3m;
+		}
 	}
 
-	public void setTimeLast(long timeLast) {
-		this.timeLast = timeLast;
+	public void setTimeLast(String value, long timeLast) {
+		if(value.equals("500k")){
+			this.timeLast500k = timeLast;
+		} else if(value.equals("1m")){
+			this.timeLast1m = timeLast;
+		} else if(value.equals("3m")){
+			this.timeLast3m = timeLast;
+		}
 	}
 }

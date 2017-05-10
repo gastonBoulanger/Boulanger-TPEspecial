@@ -38,9 +38,16 @@ public class UserLinkedListFirst extends UserLinkedList {
 	}
 
 	@Override
-	public void saveResult() {
+	public void saveResult(User user, int size, long result) {
 		// TODO Auto-generated method stub
-		
+		if(size <= 500000){
+			user.setTimeFirst("500k", result);
+		}
+		else if( size <= 1000000){
+			user.setTimeFirst("1m",result);
+		}
+		else if( size > 3000000){
+			user.setTimeFirst("3m",result);
+		}
 	}
-
 }

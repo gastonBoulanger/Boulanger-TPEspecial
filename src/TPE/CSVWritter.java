@@ -25,10 +25,15 @@ public class CSVWritter {
 	}
 
 	public void write(ArrayList<User> users) {
+		String k500 = "500k";
+		String m1 = "1m";
+		String m3 = "3m";
 		for (User user : users) {
 			try {
-				// Escribo la primer linea del archivo
-				String contenidoLinea1 = user.getUserId().toString() +/* ";" + String.valueOf(user.getTimeArray()) + ";" + String.valueOf(user.getTimeFirst()) + */ ";" + String.valueOf(user.getTimeLast());
+				String timeOne = user.getTimeArray(k500)+ ";" + user.getTimeArray(m1)+ ";" + user.getTimeArray(m3);
+				String timeTwo = user.getTimeFirst(k500)+ ";" + user.getTimeFirst(m1)+ ";" + user.getTimeFirst(m3);
+				String timeThree = user.getTimeLast(k500)+ ";" + user.getTimeLast(m1)+ ";" + user.getTimeLast(m3);
+				String contenidoLinea1 = user.getUserId().toString() + timeOne + timeTwo + timeThree;
 				bw.write(contenidoLinea1);
 				bw.newLine();
 			} catch (IOException ioe) {

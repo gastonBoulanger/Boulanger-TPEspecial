@@ -13,6 +13,7 @@ public abstract class UserLinkedList implements IUserList {
 		// TODO Auto-generated method stub
 		
 	};
+	
 	@Override
 	public void addUsers(ArrayList<User> users) {
 		// TODO Auto-generated method stub
@@ -21,7 +22,7 @@ public abstract class UserLinkedList implements IUserList {
 			insertUser(user);
 			Date end = new Date();
 			long result = end.getTime() - init.getTime();
-			user.setTimeFirst(result);
+			user.setTimeLast("500k", result);
 		}
 		Date end = new Date();
 		long result = end.getTime() - init.getTime();
@@ -46,15 +47,16 @@ public abstract class UserLinkedList implements IUserList {
 						userTemp = userTemp.getNext();
 					}
 				}
+				i++;
 			}
 			Date end = new Date();
 			long result = end.getTime() - init.getTime();
-			user.setTimeLast(result);
+			saveResult(user, size, result);
 		}
 	}
 
 	@Override
-	public void saveResult() {
+	public void saveResult(User user, int size, long result) {
 		// TODO Auto-generated method stub
 		
 	}
