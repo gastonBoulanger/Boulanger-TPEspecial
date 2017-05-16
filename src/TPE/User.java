@@ -3,10 +3,15 @@ package TPE;
 import java.util.ArrayList;
 
 public class User {
+	private final static String k500 = "500k";
+	private final static String m1 = "1m";
+	private final static String m3 = "3m";
 	private User next;
 	private Integer userId;
 	private ArrayList<String> userInterest = new ArrayList<String>();
-	private boolean exists = false;
+	private boolean existsIn500k = false;
+	private boolean existsIn1m = false;
+	private boolean existsIn3m = false;
 	private long timeLast500k;
 	private long timeLast1m;
 	private long timeLast3m;
@@ -17,12 +22,25 @@ public class User {
 	private long timeArray1m;
 	private long timeArray3m;
 	
-	public boolean exists() {
-		return exists;
+	public boolean exists(String value) {
+		if(value.equals(k500)){
+			return existsIn500k;
+		} else if(value.equals(m1)){
+			return existsIn1m;
+		} else{
+			return existsIn3m;
+		}
 	}
 
-	public void setExists(boolean exists) {
-		this.exists = exists;
+	public void setExists(String value, boolean exists) {
+		if(value.equals(k500)){
+			this.existsIn500k = exists;
+		} else if(value.equals(m1)){
+			this.existsIn1m = exists;
+		} else if(value.equals(m3)){
+			this.existsIn3m = exists;
+		}
+		
 	}
 	
 	public Integer getUserId(){
@@ -66,9 +84,9 @@ public class User {
 	}
 
 	public long getTimeArray(String value) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			return timeArray500k;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			return timeArray1m;
 		} else{
 			return timeArray3m;
@@ -77,19 +95,19 @@ public class User {
 
 
 	public void setTimeArray(String value, long timeArray) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			this.timeArray500k = timeArray;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			this.timeArray1m = timeArray;
-		} else if(value.equals("3m")){
+		} else if(value.equals(m3)){
 			this.timeArray3m = timeArray;
 		}
 	}
 
 	public long getTimeFirst(String value) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			return timeFirst500k;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			return timeFirst1m;
 		} else{
 			return timeFirst3m;
@@ -97,19 +115,19 @@ public class User {
 	}
 
 	public void setTimeFirst(String value, long timeFirst) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			this.timeFirst500k = timeFirst;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			this.timeFirst1m = timeFirst;
-		} else if(value.equals("3m")){
+		} else if(value.equals(m3)){
 			this.timeFirst3m = timeFirst;
 		}
 	}
 
 	public long getTimeLast(String value) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			return timeLast500k;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			return timeLast1m;
 		} else{
 			return timeLast3m;
@@ -117,11 +135,11 @@ public class User {
 	}
 
 	public void setTimeLast(String value, long timeLast) {
-		if(value.equals("500k")){
+		if(value.equals(k500)){
 			this.timeLast500k = timeLast;
-		} else if(value.equals("1m")){
+		} else if(value.equals(m1)){
 			this.timeLast1m = timeLast;
-		} else if(value.equals("3m")){
+		} else if(value.equals(m3)){
 			this.timeLast3m = timeLast;
 		}
 	}

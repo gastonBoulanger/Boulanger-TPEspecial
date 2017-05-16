@@ -8,12 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * Ejemplo de cómo leer un archivo CSV
- * 
- * @author Mariano A. Fernandez <fernandez.mariano.a@gmail.com>
- */
 public class CSVReader {
 
     public ArrayList<User> reader(String path)  {
@@ -36,6 +30,7 @@ public class CSVReader {
             	}
             	numLine++;
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

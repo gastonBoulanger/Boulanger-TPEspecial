@@ -3,11 +3,10 @@ package TPE;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class UserLinkedList implements IUserList {
+public abstract class LinkedList implements IList {
 	protected User first;
 	protected User last;
 	protected int size = 0;
-	
 	
 	public void insertUser(User user){
 		// TODO Auto-generated method stub
@@ -19,10 +18,11 @@ public abstract class UserLinkedList implements IUserList {
 		// TODO Auto-generated method stub
 		Date init = new Date();
 		for(User user : users){
+			Date initU = new Date();
 			insertUser(user);
 			Date end = new Date();
-			long result = end.getTime() - init.getTime();
-			user.setTimeLast("500k", result);
+			long result = end.getTime() - initU.getTime();
+			saveResult(user, size, false, result);
 		}
 		Date end = new Date();
 		long result = end.getTime() - init.getTime();
@@ -32,7 +32,6 @@ public abstract class UserLinkedList implements IUserList {
 	@Override
 	public void searchUsers(ArrayList<User> usersQuery) {
 		for (User user : usersQuery) {
-			user.setExists(false);
 			boolean found = false;
 			User userTemp = first;
 			Date init = new Date();
@@ -40,7 +39,6 @@ public abstract class UserLinkedList implements IUserList {
 			while(!found && (i < size)){
 				if(userTemp.getUserId().equals(user.getUserId())){
 					found = true;
-					user.setExists(true);
 				}
 				else{
 					if(userTemp.hasNext()){
@@ -51,12 +49,12 @@ public abstract class UserLinkedList implements IUserList {
 			}
 			Date end = new Date();
 			long result = end.getTime() - init.getTime();
-			saveResult(user, size, result);
+			saveResult(user, size, found, result);
 		}
 	}
 
 	@Override
-	public void saveResult(User user, int size, long result) {
+	public void saveResult(User user, int size, boolean exists, long result) {
 		// TODO Auto-generated method stub
 		
 	}

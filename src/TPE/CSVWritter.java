@@ -28,13 +28,20 @@ public class CSVWritter {
 		String k500 = "500k";
 		String m1 = "1m";
 		String m3 = "3m";
+		String head = "ID;Exist in 500k;Time in Array 500;Time in ListFirst 500;Time in list last 500;Exist in 1M;Time in Array 1M;Time in ListFirst 1M;Time in list last 1M;Exist in 3M;Time in Array 3M;Time in ListFirst 3M;Time in list last 3M ";
+		int i= 0;
 		for (User user : users) {
 			try {
-				String timeOne = user.getTimeArray(k500)+ ";" + user.getTimeArray(m1)+ ";" + user.getTimeArray(m3);
-				String timeTwo = user.getTimeFirst(k500)+ ";" + user.getTimeFirst(m1)+ ";" + user.getTimeFirst(m3);
-				String timeThree = user.getTimeLast(k500)+ ";" + user.getTimeLast(m1)+ ";" + user.getTimeLast(m3);
-				String contenidoLinea1 = user.getUserId().toString() + timeOne + timeTwo + timeThree;
-				bw.write(contenidoLinea1);
+				if(i == 0){
+					bw.write(head);
+					bw.newLine();
+					i++;
+				}
+				String time500k= user.exists(k500) + ";" + user.getTimeArray(k500)+ ";" + user.getTimeFirst(k500) + ";" +  user.getTimeLast(k500);
+				String time1m = user.exists(m1) + ";" + user.getTimeArray(m1)+ ";" + user.getTimeFirst(m1) + ";" +  user.getTimeLast(m1);
+				String time3m = user.exists(m3) + ";" + user.getTimeArray(m3)+ ";" + user.getTimeFirst(m3) + ";" +  user.getTimeLast(m3);
+				String contenidoLinea = user.getUserId().toString() + ";" + time500k + ";" + time1m + ";" + time3m;
+				bw.write(contenidoLinea);
 				bw.newLine();
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
