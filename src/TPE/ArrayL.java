@@ -5,12 +5,14 @@ import java.util.Date;
 
 public class ArrayL implements IList{
 	private User[] users = new User[10000];
-	private int lastInsert;
+	private int lastInsert = 0;
+	private Boolean isSort;
+	private Boolean exist = false;
 
 	public void insertUsers(ArrayList<User> users) {
 		for(int i = 0; i < users.size(); i++){
 			Date initU = new Date();
-			lastInsert = lastInsert + i;
+			lastInsert++;
 			if(lastInsert >= this.users.length){
 				duplicateArrayLength();
 			}
@@ -19,20 +21,19 @@ public class ArrayL implements IList{
 			long result = end.getTime() - initU.getTime();
 			saveResult(this.users[i], lastInsert, false, result);
 		}
+		isSort = false;
 	}
 	
 	@Override
 	public void addUsers(ArrayList<User> users) {
 		for (int i = 0; i < users.size(); i++) {
-			
-			if(i >= this.users.length){
+			lastInsert++;
+			if(lastInsert >= this.users.length){
 				duplicateArrayLength();
 			}
-			lastInsert = i;
 			this.users[i] = users.get(i);
-			
 		}
-		
+		isSort = false;
 	}
 	private void duplicateArrayLength(){
 		User[] usersTemp = new User[this.users.length*2]; 
@@ -59,6 +60,41 @@ public class ArrayL implements IList{
 			int size = users.length;
 			saveResult(user, size, found, result);
 		}
+	}
+	
+	public void searchUsersSort(ArrayList<User> usersQuery) {
+		if(!isSort){
+			MergeSort ms = new MergeSort();
+			ms.sort(users);
+			isSort = true;
+		}
+		for(User user : usersQuery){
+			Date init = new Date();
+			exist = false;
+			boolean exists = searchUser(user, 0, lastInsert);
+			Date end = new Date();
+			long result = end.getTime() - init.getTime();
+			int size = users.length;
+			saveResult(user, size, exists, result);
+		}
+	}
+	
+	private Boolean searchUser(User user, int min, int max){
+		int tot = min + max;
+		int mid = tot/2;
+		int resultUser = users[mid].getUserId().compareTo(user.getUserId());
+		if(users[mid].getUserId().equals(user.getUserId())){
+			exist = true;
+		}
+		else if(!(min >= max)){
+			if(resultUser < 0){
+				searchUser(user, mid + 1, max);
+			}
+			else if(resultUser > 0){
+				searchUser(user, min, mid);
+			}
+		}
+		return exist;
 	}
 
 	@Override

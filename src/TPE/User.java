@@ -3,9 +3,9 @@ package TPE;
 import java.util.ArrayList;
 
 public class User {
-	private final static String k500 = "500k";
-	private final static String m1 = "1m";
-	private final static String m3 = "3m";
+	protected final static String k500 = "500k";
+	protected final static String m1 = "1m";
+	protected final static String m3 = "3m";
 	private User next;
 	private Integer userId;
 	private ArrayList<String> userInterest = new ArrayList<String>();
@@ -39,8 +39,7 @@ public class User {
 			this.existsIn1m = exists;
 		} else if(value.equals(m3)){
 			this.existsIn3m = exists;
-		}
-		
+		}	
 	}
 	
 	public Integer getUserId(){
@@ -58,11 +57,10 @@ public class User {
 	}
 
 	public int compareTo(User user) {
-		return this.userId-user.getId();
+		return this.userId.compareTo(user.getId());
 	}
 
 	private Integer getId() {
-		// TODO Auto-generated method stub
 		return userId;
 	}
 
@@ -92,7 +90,6 @@ public class User {
 			return timeArray3m;
 		}
 	}
-
 
 	public void setTimeArray(String value, long timeArray) {
 		if(value.equals(k500)){

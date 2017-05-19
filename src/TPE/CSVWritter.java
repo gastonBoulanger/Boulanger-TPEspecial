@@ -37,9 +37,12 @@ public class CSVWritter {
 					bw.newLine();
 					i++;
 				}
-				String time500k= user.exists(k500) + ";" + user.getTimeArray(k500)+ ";" + user.getTimeFirst(k500) + ";" +  user.getTimeLast(k500);
-				String time1m = user.exists(m1) + ";" + user.getTimeArray(m1)+ ";" + user.getTimeFirst(m1) + ";" +  user.getTimeLast(m1);
-				String time3m = user.exists(m3) + ";" + user.getTimeArray(m3)+ ";" + user.getTimeFirst(m3) + ";" +  user.getTimeLast(m3);
+				String time500k= user.exists(k500) + ";" + user.getTimeArray(k500);
+				String time1m = user.exists(m1) + ";" + user.getTimeArray(m1);
+				String time3m = user.exists(m3) + ";" + user.getTimeArray(m3);
+				//String time500k= user.exists(k500) + ";" + user.getTimeArray(k500)+ ";" + user.getTimeFirst(k500) + ";" +  user.getTimeLast(k500);
+				//String time1m = user.exists(m1) + ";" + user.getTimeArray(m1)+ ";" + user.getTimeFirst(m1) + ";" +  user.getTimeLast(m1);
+				//String time3m = user.exists(m3) + ";" + user.getTimeArray(m3)+ ";" + user.getTimeFirst(m3) + ";" +  user.getTimeLast(m3);
 				String contenidoLinea = user.getUserId().toString() + ";" + time500k + ";" + time1m + ";" + time3m;
 				bw.write(contenidoLinea);
 				bw.newLine();

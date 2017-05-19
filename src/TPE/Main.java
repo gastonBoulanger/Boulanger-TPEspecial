@@ -55,38 +55,33 @@ public class Main {
 
 	private static void execute(ArrayList<User> load, ArrayList<User> searchUsers, ArrayList<User> insertUsers) {
 		// TODO Auto-generated method stub
-
+		
 		// UserLinkedListFist
 		Date init = new Date();
 		// Preload
-		LinkedListFirst ullf;
-		ullf = new LinkedListFirst();
+		LinkedListFirst ullf = new LinkedListFirst();
 		ullf.addUsers(load);
 		// Insert
 		ullf.addUsers(insertUsers);
 		// Search
-		ullf.searchUsers(searchUsers);
-		printTime(init);
+		ullf.searchUsers(searchUsers); printTime(init);
 		System.out.println("end search ullf");
-
+		 
 		// User linked list last
 		Date init2 = new Date();
-		LinkedListLast ulll;
 		//Preload
-		ulll = new LinkedListLast();
+		LinkedListLast ulll = new LinkedListLast();
 		ulll.addUsers(load);
-		// Insert New
+		//Insert New
 		ulll.addUsers(insertUsers);
 		// Search
-		ulll.searchUsers(searchUsers);
-		printTime(init2);
+		ulll.searchUsers(searchUsers); printTime(init2);
 		System.out.println("end search ulll");
-
+		
 		// User array
 		Date init3 = new Date();
-		ArrayL ua;
 		// Preload
-		ua = new ArrayL();
+		ArrayL ua = new ArrayL();
 		ua.addUsers(load);
 		// Insert new
 		ua.insertUsers(insertUsers);
@@ -94,7 +89,18 @@ public class Main {
 		ua.searchUsers(searchUsers);
 		printTime(init3);
 		System.out.println("end search array");
-
+		
+		// User array sort
+		Date init4 = new Date();
+		ArrayL al = new ArrayL();
+		// Preload
+		al.addUsers(load);
+		// Insert new
+		al.insertUsers(insertUsers);
+		// Search
+		al.searchUsersSort(searchUsers);
+		printTime(init4);
+		System.out.println("end search binary array sort");
 	}
 
 	private static void printTime(Date init) {
